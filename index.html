@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoodMuse 🎭</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #FFDEE9, #B5FFFC);
+      transition: background 0.4s ease;
+    }
+    h1 {
+      font-size: 3rem;
+      color: #333;
+    }
+    select, button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      margin: 10px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+    }
+    #output {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      padding: 20px;
+      background-color: #ffffffa0;
+      border-radius: 12px;
+      text-align: center;
+      width: 80%;
+      max-width: 400px;
+    }
+    .fade {
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>MoodMuse 🎭</h1>
+  <select id="mood">
+    <option value="happy">😄 Happy</option>
+    <option value="sad">😢 Sad</option>
+    <option value="angry">😡 Angry</option>
+    <option value="chill">😎 Chill</option>
+    <option value="motivated">🚀 Motivated</option>
+  </select>
+  <button onclick="generateMoodMuse()">Show me something!</button>
+  <div id="output"></div>
+
+  <script>
+    const moodData = {
+      happy: [
+        "Why don’t scientists trust atoms? Because they make up everything! 😆",
+        "https://i.imgur.com/VdW8A5C.jpeg"
+      ],
+      sad: [
+        "This too shall pass. You’ve got this 💪",
+        "https://i.imgur.com/w1URgKI.png"
+      ],
+      angry: [
+        "Breathe in, breathe out. You’re in control 🧘‍♀️",
+        "https://i.imgur.com/xVlWs3S.jpeg"
+      ],
+      chill: [
+        "Vibe check... You passed. ✌️",
+        "https://i.imgur.com/j7eyv9i.jpeg"
+      ],
+      motivated: [
+        "You are capable of amazing things! 💥",
+        "https://i.imgur.com/CvMeylh.jpeg"
+      ]
+    };
+
+    function generateMoodMuse() {
+      const mood = document.getElementById("mood").value;
+      const output = document.getElementById("output");
+      const content = moodData[mood];
+      const result = Math.random() > 0.5 ? `<p>${content[0]}</p>` : `<img src="${content[1]}" width="250">`;
+      output.innerHTML = result;
+      output.classList.add("fade");
+      setTimeout(() => output.classList.remove("fade"), 1000);
+    }
+  </script>
+</body>
+</html>
